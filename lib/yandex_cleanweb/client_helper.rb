@@ -24,16 +24,16 @@ module YandexCleanweb
         #  </script>
         #EOS
       else
+        html << %{#{error ? "&amp;error=#{CGI::escape(error)}" : ""}}
         unless options[:noscript] == false
           html << %{<noscript>\n  }
-          html << %{#{error ? "&amp;error=#{CGI::escape(error)}" : ""}}
-          html << %{ <div id="captcha_widget">\n }
-          html << %{ <div id="captcha_image">\n }
-          html << %{ <img src="#{captcha[:url]}" />\n }
-          html << %{ </div>\n }
-          html << %{ <input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />\n }
-          html << %{ <input type="hidden" name="captcha_response_id" value="#{captcha[:captcha]}" />\n }
-          html << %{ </div>\n }
+          html << %{<div id="captcha_widget">\n }
+          html << %{<div id="captcha_image">\n }
+          html << %{<img src="#{captcha[:url]}" />\n }
+          html << %{</div>\n }
+          html << %{<input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />\n }
+          html << %{<input type="hidden" name="captcha_response_id" value="#{captcha[:captcha]}" />\n }
+          html << %{</div>\n }
           html << %{</noscript>\n}
         end
       end
