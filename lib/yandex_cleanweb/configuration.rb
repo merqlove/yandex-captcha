@@ -30,11 +30,13 @@ module YandexCleanweb
   class Configuration
     attr_accessor :api_server_url,
                   :api_key,
-                  :handle_timeouts_gracefully,
+                  :skip_verify_env,
+                  :handle_timeouts_gracefully
 
     def initialize #:nodoc:
       @api_server_url      = API_URL
       @api_key           = ENV['CAPTCHA_KEY']
+      @skip_verify_env            = SKIP_VERIFY_ENV
       @handle_timeouts_gracefully = HANDLE_TIMEOUTS_GRACEFULLY
     end
 
