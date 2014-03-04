@@ -33,7 +33,7 @@ module YandexCleanweb
                   :skip_verify_env,
                   :handle_timeouts_gracefully,
                   :captcha_type,
-                  :params,
+                  :params
 
     def initialize #:nodoc:
       @api_server_url      = API_URL
