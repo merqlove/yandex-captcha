@@ -68,7 +68,7 @@ module YandexCleanweb
 
       def api_get_captcha(request_id)
         get_captcha_url = "#{API_URL}/get-captcha"
-        params = { key: prepare_api_key, id: request_id }
+        params = { key: prepare_api_key, id: request_id, type: YandexCleanweb.configuration.captcha_type }
 
         uri = URI.parse(get_captcha_url)
         uri.query = URI.encode_www_form(params)
