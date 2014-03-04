@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module YandexCleanweb
   module ClientHelper
     # Your public API can be specified in the +options+ hash or preferably
