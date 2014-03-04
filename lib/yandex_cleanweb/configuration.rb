@@ -35,7 +35,6 @@ module YandexCleanweb
     def initialize #:nodoc:
       @api_server_url      = API_URL
       @api_key           = ENV['CAPTCHA_KEY']
-      @public_key            = ENV['RECAPTCHA_PUBLIC_KEY']
       @handle_timeouts_gracefully = HANDLE_TIMEOUTS_GRACEFULLY
     end
 
