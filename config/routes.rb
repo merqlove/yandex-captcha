@@ -1,3 +1,3 @@
-Rails.application.routes.draw do
-  match 'ycaptcha' => 'captcha#show'
+YandexCleanweb::Engine.routes.draw do
+  resource :captcha, :only => [:show]
 end
