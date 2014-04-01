@@ -1,6 +1,5 @@
 module YandexCleanweb
-  class CaptchaController < ApplicationController
-
+  class CaptchaController < YandexCleanweb::ApplicationController
     def show
     end
   end
