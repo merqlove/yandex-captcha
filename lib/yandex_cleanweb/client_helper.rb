@@ -6,7 +6,6 @@ module YandexCleanweb
     def captcha_tags(options = {})
       # Default options
       error = options[:error] ||= ((defined? flash) ? flash[:captcha_error] : "")
-      captcha = YandexCleanweb::Verify.get_captcha
       html  = ""
       if options[:ajax]
         html << <<-EOS
@@ -20,6 +19,7 @@ module YandexCleanweb
           #{javascript_include_tag "yandex_cleanweb/captcha"}
         EOS
       else
+        captcha = YandexCleanweb::Verify.get_captcha
         html << %{#{error ? "&amp;error=#{CGI::escape(error)}" : ""}}
         unless options[:noscript] == false
           #html << %{<noscript>\n  }
