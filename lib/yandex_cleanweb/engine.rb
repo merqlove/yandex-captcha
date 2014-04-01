@@ -12,6 +12,10 @@ module YandexCleanweb
       end
     end
 
+    initializer "yandex_cleanweb.assets.precompile" do |app|
+      app.config.assets.precompile += %w(captcha.coffee)
+    end
+
   end
 
 end
