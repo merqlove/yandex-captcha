@@ -32,11 +32,9 @@ module YandexCleanweb
                   :api_key,
                   :skip_verify_env,
                   :handle_timeouts_gracefully,
-                  :captcha_type,
-                  :captcha_url
+                  :captcha_type
 
     def initialize #:nodoc:
-      @captcha_url = CAPTCHA_URL
       @api_server_url      = API_URL
       @captcha_type = CAPTCHA_TYPE
       @api_key           = ENV['CAPTCHA_KEY']

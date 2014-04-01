@@ -8,7 +8,6 @@ module YandexCleanweb
 
   API_URL = 'http://cleanweb-api.yandex.ru/1.0'
   CAPTCHA_TYPE = 'std'
-  CAPTCHA_URL = '/captcha'
   HANDLE_TIMEOUTS_GRACEFULLY      = true
   SKIP_VERIFY_ENV = ['test', 'cucumber']
 
