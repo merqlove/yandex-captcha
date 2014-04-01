@@ -12,6 +12,12 @@ module YandexCleanweb
       end
     end
 
+    # Check the gem config
+    initializer "check config" do |app|
+      # make sure mount_at ends with trailing slash
+      config.mount_at += '/'  unless config.mount_at.last == '/'
+    end
+
     initializer "setup config" do
       begin
         ActionView::Base.send(:include, ::YandexCleanweb::ClientHelper)
