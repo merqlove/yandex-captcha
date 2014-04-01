@@ -2,4 +2,4 @@ $ ->
   $.getJSON "<%= YandexCleanweb::Engine.routes.url_helpers.captcha_path %>", (data) ->
     $("#captcha_image img").attr("src", data.url)
     $("#captcha_widget input[name=captcha_response_id]").attr("value", data.captcha)
-    $("#captcha_image").css('display', 'block')
+    $("#captcha_image img").css('display', 'block')

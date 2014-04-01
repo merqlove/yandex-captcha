@@ -11,7 +11,7 @@ module YandexCleanweb
         html << <<-EOS
           <div id="captcha_widget">
           <div id="captcha_image">
-             <img src="" />
+             <img src="" style="display:none;" />
           </div>
           <input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />
           <input type="hidden" name="captcha_response_id" value="" />
