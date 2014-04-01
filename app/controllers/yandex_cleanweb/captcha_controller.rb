@@ -1,8 +1,9 @@
 module YandexCleanweb
   class CaptchaController < YandexCleanweb::ApplicationController
-    respond_to :html, :json
     def show
-      respond_with(YandexCleanweb::Verify.get_captcha)
+      respond_to do |format|
+        format.json { render :json => YandexCleanweb::Verify.get_captcha }
+      end
     end
   end
 end
