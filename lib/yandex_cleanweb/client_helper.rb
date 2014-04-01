@@ -17,7 +17,6 @@ module YandexCleanweb
           <input type="hidden" name="captcha_response_id" value="" />
           </div>
           #{javascript_include_tag "yandex_cleanweb/captcha"}
-          #{stylesheet_link_tag "yandex_cleanweb/captcha"}
         EOS
       else
         captcha = YandexCleanweb::Verify.get_captcha
