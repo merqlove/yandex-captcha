@@ -8,7 +8,7 @@ module YandexCleanweb
 
     if Rails.version >= '3.1'
       initializer :assets do |config|
-        Rails.application.config.assets.precompile += %w( yandex_cleanweb/captcha.js )
+        Rails.application.config.assets.precompile += %w( yandex_cleanweb/captcha.js yandex_cleanweb/captcha.css )
       end
     end
 

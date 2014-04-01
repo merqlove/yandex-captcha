@@ -10,13 +10,14 @@ module YandexCleanweb
       if options[:ajax]
         html << <<-EOS
           <div id="captcha_widget">
-          <div id="captcha_image" style="display:none;">
+          <div id="captcha_image">
              <img src="" />
           </div>
           <input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />
           <input type="hidden" name="captcha_response_id" value="" />
           </div>
           #{javascript_include_tag "yandex_cleanweb/captcha"}
+          #{stylesheet_link_tag "yandex_cleanweb/captcha"}
         EOS
       else
         captcha = YandexCleanweb::Verify.get_captcha
