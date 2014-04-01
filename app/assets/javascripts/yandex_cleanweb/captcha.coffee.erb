@@ -1,5 +1,5 @@
 $ ->
-  $.getJSON "<%= captcha_path %>", (data) ->
+  $.getJSON "<%= yandex_cleanweb.captcha_path %>", (data) ->
     $("#captcha_image img").attr("src", data.url)
     $("#captcha_widget input[name=captcha_response_id]").attr("value", data.captcha)
     $("#captcha_image").css('display', 'block')
