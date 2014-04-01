@@ -11,7 +11,7 @@ module YandexCleanweb
       if options[:ajax]
         html << <<-EOS
           <div id="captcha_widget">
-          <div id="captcha_image style="display:none;">
+          <div id="captcha_image" style="display:none;">
              <img src="" />
           </div>
           <input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />
