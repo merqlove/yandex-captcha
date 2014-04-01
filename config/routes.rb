@@ -1,3 +1,3 @@
 YandexCleanweb::Engine.routes.draw do
-  resource :captcha, :only => [:show]
+  match 'captcha' => 'captcha#show'
 end
