@@ -1,3 +1,3 @@
 module YandexCleanweb
-  VERSION = "0.3.0b10"
+  VERSION = "0.3.1"
 end
