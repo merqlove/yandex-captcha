@@ -25,6 +25,7 @@ Or install it yourself as:
 Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru/cleanweb/getkey.xml)
 
 ```ruby
+mount YandexCleanweb::Engine, :at => '/yandex_cleanweb/'
 YandexCleanweb.api_key = "your_key"
 YandexCleanweb.spam?("just phrase")
   => false
