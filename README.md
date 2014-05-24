@@ -1,6 +1,6 @@
 # Yandex Cleanweb
 
-[![Build Status](https://travis-ci.org/evrone/yandex-cleanweb.png?branch=master)](https://travis-ci.org/evrone/yandex-cleanweb)
+[![Build Status](https://travis-ci.org/evrone/yandex_cleanweb.png?branch=master)](https://travis-ci.org/evrone/yandex_cleanweb)
 
 Ruby wrapper for [Yandex Cleanweb](http://api.yandex.ru/cleanweb/) spam detector.
 
@@ -10,7 +10,7 @@ Unfortunatelly, this gem *is not capable with MRI 1.8.7* because of MRI 1.8.7 do
 
 Add this line to your application's Gemfile:
 
-    gem 'yandex_cleanweb', '~> 0.0.5'
+    gem 'yandex-cleanweb', '~> 0.0.5'
 
 And then execute:
 
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install yandex_cleanweb
+    $ gem install yandex-cleanweb
 
 ## Usage
 
@@ -53,7 +53,7 @@ if spam_check = YandexCleanweb.spam?(user_input, ip: current_user.ip)
 end
 ```
 
-If you use Yandex Cleanweb in Rails app, we recommend to set up the api key in `config/initializers/yandex_cleanweb.rb`
+If you use Yandex Cleanweb in Rails app, we recommend to set up the api key in `config/initializers/yandex-cleanweb.rb`
 
 ## Contributing
 

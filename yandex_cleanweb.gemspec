@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'yandex_cleanweb/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "yandex_cleanweb"
+  gem.name          = "yandex-cleanweb"
   gem.version       = YandexCleanweb::VERSION
-  gem.authors       = ["Kir Shatrov"]
-  gem.email         = ["shatrov@me.com"]
+  gem.authors       = ["Alexander Merkulov","Kir Shatrov"]
+  gem.email         = ["sasha@merqlove.ru","shatrov@me.com"]
   gem.description   = %q{Ruby wrapper for Yandex.Cleanweb}
   gem.summary       = %q{Ruby wrapper for Yandex.Cleanweb spam detector}
-  gem.homepage      = "https://github.com/evrone/yandex-cleanweb"
+  gem.homepage      = "https://github.com/merqlove/yandex-cleanweb"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
