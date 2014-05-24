@@ -41,10 +41,7 @@ module YandexCleanweb
         { url: url, captcha: captcha_id }
       end
 
-      def valid_captcha?(options = {})
-        request_id = options[:request_id] || nil
-        value = options[:value] || params[:captcha_response_field]
-        captcha_id = options[:captcha_id] || params[:captcha_response_id]
+      def valid_captcha?(captcha_id=nil, value=nil, request_id=nil)
         response = api_check_captcha(request_id, captcha_id, value)
         doc = Nokogiri::XML(response)
         doc.xpath('//check-captcha-result/ok').any?
