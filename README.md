@@ -53,7 +53,7 @@ if spam_check = YandexCleanweb.spam?(user_input, ip: current_user.ip)
 end
 ```
 
-If you use Yandex Cleanweb in Rails app, we recommend to set up the api key in `config/initializers/yandex-cleanweb.rb`
+If you use Yandex Cleanweb in Rails app, we recommend to set up the api key in `config/initializers/yandex_cleanweb.rb`
 
 ## Contributing
 
