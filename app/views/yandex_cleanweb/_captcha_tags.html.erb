@@ -1,0 +1,16 @@
+<% if noscript %>
+  <noscript>
+<% end %>
+  <div id="captcha_widget">
+    <% if error %>
+      <div id="captcha_error"><%= error %></div>
+    <% end %>
+    <div id="captcha_image">
+      <img src="<%= captcha[:url] %>" />
+    </div>
+    <input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />
+    <input type="hidden" name="captcha_response_id" value="<%= captcha[:captcha] %>" />
+  </div>
+<% if noscript %>
+  </noscript>
+<% end %>

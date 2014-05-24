@@ -1,13 +1,13 @@
 module YandexCleanweb
-  # This class enables detailed configuration of the recaptcha services.
+  # This class enables detailed configuration of the Yandex CleanWeb services.
   #
   # By calling
   #
-  #   Recaptcha.configuration # => instance of Recaptcha::Configuration
+  #   YandexCleanweb.configuration # => instance of YandexCleanweb::Configuration
   #
   # or
-  #   Recaptcha.configure do |config|
-  #     config # => instance of Recaptcha::Configuration
+  #   YandexCleanweb.configure do |config|
+  #     config # => instance of YandexCleanweb::Configuration
   #   end
   #
   # you are able to perform configuration updates.
@@ -15,16 +15,16 @@ module YandexCleanweb
   # Your are able to customize all attributes listed below. All values have
   # sensitive default and will very likely not need to be changed.
   #
-  # Please note that the public and private key for the reCAPTCHA API Access
+  # Please note that the public and private key for the Yandex CleanWeb API Access
   # have no useful default value. The keys may be set via the Shell enviroment
   # or using this configuration. Settings within this configuration always take
   # precedence.
   #
   # Setting the keys with this Configuration
   #
-  #   Recaptcha.configure do |config|
-  #     config.public_key  = '6Lc6BAAAAAAAAChqRbQZcn_yyyyyyyyyyyyyyyyy'
-  #     config.private_key = '6Lc6BAAAAAAAAKN3DRm6VA_xxxxxxxxxxxxxxxxx'
+  #   YandexCleanweb.configure do |config|
+  #     config.api_key  = 'cw.1.1.gsdjdgskjhsdgjkgsdjsdjgkskhsgjkgsjhdkgsdghskd.sdgjhgsdsgdkjgdshkgds'
+  #     config.captcha_type  = 'elite'
   #   end
   #
   class Configuration

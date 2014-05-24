@@ -43,7 +43,6 @@ module YandexCleanweb
 
       def valid_captcha?(options = {})
         request_id = options[:request_id] || nil
-        params = options[:params] || nil
         value = options[:value] || params[:captcha_response_field]
         captcha_id = options[:captcha_id] || params[:captcha_response_id]
         response = api_check_captcha(request_id, captcha_id, value)

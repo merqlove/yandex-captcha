@@ -6,34 +6,12 @@ module YandexCleanweb
     def captcha_tags(options = {})
       # Default options
       error = options[:error] ||= ((defined? flash) ? flash[:captcha_error] : "")
-      html  = ""
       if options[:ajax]
-        html << <<-EOS
-          <div id="captcha_widget">
-          <div id="captcha_image">
-             <img src="#{asset_path("yandex_cleanweb/loading.gif")}" />
-          </div>
-          <input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />
-          <input type="hidden" name="captcha_response_id" value="" />
-          </div>
-          #{javascript_include_tag "yandex_cleanweb/captcha"}
-        EOS
+        render "yandex_cleanweb/captcha_ajax_tags"
       else
         captcha = YandexCleanweb::Verify.get_captcha
-        html << %{#{error ? "&amp;error=#{CGI::escape(error)}" : ""}}
-        unless options[:noscript] == false
-          #html << %{<noscript>\n  }
-          html << %{<div id="captcha_widget">\n }
-          html << %{<div id="captcha_image">\n }
-          html << %{<img src="#{captcha[:url]}" />\n }
-          html << %{</div>\n }
-          html << %{<input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />\n }
-          html << %{<input type="hidden" name="captcha_response_id" value="#{captcha[:captcha]}" />\n }
-          html << %{</div>\n }
-          #html << %{</noscript>\n}
-        end
+        render "yandex_cleanweb/captcha_tags", :locals => { :captcha => captcha, error: error } if captcha
       end
-      return (html.respond_to?(:html_safe) && html.html_safe) || html
     end # captcha_tags
 
   end # ClientHelper
