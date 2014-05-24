@@ -1,5 +1,4 @@
 require 'yandex_cleanweb/configuration'
-require 'yandex_cleanweb/client_helper'
 require 'yandex_cleanweb/verify'
 
 module YandexCleanweb
@@ -47,4 +46,8 @@ end
 
 if defined?(Rails)
   require 'yandex_cleanweb/rails'
+end
+
+if defined?(Sinatra) and Sinatra.respond_to? :register
+  require 'yandex_cleanweb/helpers/sinatra'
 end

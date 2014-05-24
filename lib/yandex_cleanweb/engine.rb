@@ -1,4 +1,3 @@
-require "yandex_cleanweb"
 module YandexCleanweb
   class Engine < Rails::Engine
     isolate_namespace YandexCleanweb
