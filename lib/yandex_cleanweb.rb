@@ -49,5 +49,5 @@ if defined?(Rails)
 end
 
 if defined?(Sinatra) and Sinatra.respond_to? :register
-  require 'yandex_cleanweb/helpers/sinatra'
+  require 'yandex_cleanweb/sinatra'
 end
