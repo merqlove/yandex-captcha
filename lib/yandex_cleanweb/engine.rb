@@ -11,7 +11,7 @@ module YandexCleanweb
 
     initializer "setup config" do
       begin
-        ActionView::Base.send(:include, ::YandexCleanweb::ClientHelper)
+        ActionView::Base.send(:include, ::YandexCleanweb::Helpers::Rails)
         ActionController::Base.send(:include, ::YandexCleanweb::Verify)
       end
     end
