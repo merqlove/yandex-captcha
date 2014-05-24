@@ -94,7 +94,7 @@ describe YandexCleanweb do
         FakeWeb.clean_registry
       end
 
-      it do
+      it "check for spam" do
         FakeWeb.register_uri(:post, "http://cleanweb-api.yandex.ru/1.0/check-spam", body: "")
         proc { YandexCleanweb.spam?(body_plain: "any text") }.must_raise(YandexCleanweb::BadResponseException)
       end

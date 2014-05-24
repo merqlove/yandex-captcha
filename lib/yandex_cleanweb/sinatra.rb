@@ -1,5 +1,5 @@
 require 'sinatra/base'
-require 'helpers/sinatra'
+require 'yandex_cleanweb/helpers/sinatra'
 
 module YandexCleanweb
   module Sinatra
