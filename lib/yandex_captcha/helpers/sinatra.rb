@@ -9,7 +9,7 @@ module YandexCaptcha
           captcha = YandexCaptcha::Verify.get_captcha
           render :erb, settings.captcha_template.to_s.to_sym, {layout: false}, { captcha: captcha, noscript: options[:noscript] } if captcha
         end
-      end # captcha_tags
+      end
 
     end
   end
