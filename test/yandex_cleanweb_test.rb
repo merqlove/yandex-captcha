@@ -1,34 +1,34 @@
 # encoding: utf-8
 require "test_helper"
 
-describe YandexCleanweb do
+describe YandexCaptcha do
 
   context "without api key" do
     before do
-      YandexCleanweb.api_key = nil
+      YandexCaptcha.api_key = nil
     end
 
     describe "#spam?" do
       it "raise an error" do
         -> {
-          YandexCleanweb.spam?("anything")
-        }.must_raise YandexCleanweb::NoApiKeyException
+          YandexCaptcha.spam?("anything")
+        }.must_raise YandexCaptcha::NoApiKeyException
       end
     end
 
     describe "#get_captcha" do
       it "raise an error" do
         -> {
-          YandexCleanweb.get_captcha("anything")
-        }.must_raise YandexCleanweb::NoApiKeyException
+          YandexCaptcha.get_captcha("anything")
+        }.must_raise YandexCaptcha::NoApiKeyException
       end
     end
 
     describe "#valid_captcha?" do
       it "raise an error" do
         -> {
-          YandexCleanweb.valid_captcha?("anything", "anything", 123)
-        }.must_raise YandexCleanweb::NoApiKeyException
+          YandexCaptcha.valid_captcha?("anything", "anything", 123)
+        }.must_raise YandexCaptcha::NoApiKeyException
       end
     end
 
@@ -36,38 +36,38 @@ describe YandexCleanweb do
 
   context "with empty api key" do
     before do
-      YandexCleanweb.api_key = ""
+      YandexCaptcha.api_key = ""
     end
 
     it "raise an error" do
       -> {
-        YandexCleanweb.spam?("anything")
-      }.must_raise YandexCleanweb::NoApiKeyException
+        YandexCaptcha.spam?("anything")
+      }.must_raise YandexCaptcha::NoApiKeyException
     end
   end
 
   context "with api key" do
 
     before do
-      YandexCleanweb.api_key = "cw.1.1.20121227T080449Z.51de1ee126e5ced6.f4f417fb55727520d7e39b00cf5393d4b1ca5e78"
+      YandexCaptcha.api_key = "cw.1.1.20121227T080449Z.51de1ee126e5ced6.f4f417fb55727520d7e39b00cf5393d4b1ca5e78"
     end
 
     describe "#spam?" do
 
       describe "simple check" do
         it "works" do
-          YandexCleanweb.spam?("фраза").must_equal false
-          YandexCleanweb.spam?("недорого увеличение пениса проститутки").must_equal false
+          YandexCaptcha.spam?("фраза").must_equal false
+          YandexCaptcha.spam?("недорого увеличение пениса проститутки").must_equal false
         end
       end
 
       describe "advanced mode" do
         it "works" do
-          YandexCleanweb.spam?(body_plain: "my text", ip: "80.80.40.3").must_equal false
+          YandexCaptcha.spam?(body_plain: "my text", ip: "80.80.40.3").must_equal false
         end
 
         it "with some html" do
-          result = YandexCleanweb.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
+          result = YandexCaptcha.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
 
           result[:id].wont_be_empty
           result[:links].must_be_empty
@@ -78,13 +78,13 @@ describe YandexCleanweb do
     describe "#get_captcha + #valid_captcha?" do
 
       it "works for not valid captchas" do
-        result = YandexCleanweb.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
-        captcha = YandexCleanweb.get_captcha(result[:id])
+        result = YandexCaptcha.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
+        captcha = YandexCaptcha.get_captcha(result[:id])
 
         captcha[:url].wont_be_empty
         captcha[:captcha].wont_be_empty
 
-        valid = YandexCleanweb.valid_captcha?(result[:id], captcha[:captcha], "1234")
+        valid = YandexCaptcha.valid_captcha?(result[:id], captcha[:captcha], "1234")
         valid.must_equal false
       end
     end
@@ -96,7 +96,7 @@ describe YandexCleanweb do
 
       it "check for spam" do
         FakeWeb.register_uri(:post, "http://cleanweb-api.yandex.ru/1.0/check-spam", body: "")
-        proc { YandexCleanweb.spam?(body_plain: "any text") }.must_raise(YandexCleanweb::BadResponseException)
+        proc { YandexCaptcha.spam?(body_plain: "any text") }.must_raise(YandexCaptcha::BadResponseException)
       end
     end
   end

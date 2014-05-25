@@ -1,6 +1,4 @@
-# Yandex Cleanweb
-
-[![Build Status](https://travis-ci.org/evrone/yandex_cleanweb.png?branch=master)](https://travis-ci.org/evrone/yandex_cleanweb)
+# Yandex Captcha
 
 Ruby wrapper for [Yandex Cleanweb](http://api.yandex.ru/cleanweb/) spam detector.
 
@@ -10,7 +8,7 @@ Unfortunatelly, this gem *is not capable with MRI 1.8.7* because of MRI 1.8.7 do
 
 Add this line to your application's Gemfile:
 
-    gem 'yandex-cleanweb', '~> 0.0.5'
+    gem 'yandex_captcha', '~> 0.0.5'
 
 And then execute:
 
@@ -18,22 +16,22 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install yandex-cleanweb
+    $ gem install yandex_captcha
 
 ## Usage
 
 Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru/cleanweb/getkey.xml)
 
 ```ruby
-mount YandexCleanweb::Engine, :at => '/yandex_cleanweb/'
-YandexCleanweb.api_key = "your_key"
-YandexCleanweb.spam?("just phrase")
+mount YandexCaptcha::Engine, :at => '/yandex_captcha/'
+YandexCaptcha.api_key = "your_key"
+YandexCaptcha.spam?("just phrase")
   => false
 
-YandexCleanweb.spam?(body_plain: "my text", ip: "80.80.40.3")
+YandexCaptcha.spam?(body_plain: "my text", ip: "80.80.40.3")
   => false
 
-YandexCleanweb.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
+YandexCaptcha.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
   => { id: "request id", links: [ ['http://spam.com', true] ] }
 ```
 
@@ -42,18 +40,18 @@ More complex example:
 ```ruby
 
 user_input = "download free porn <a>...</a>"
-if spam_check = YandexCleanweb.spam?(user_input, ip: current_user.ip)
-  captcha = YandexCleanweb.get_captcha(spam_check[:id])
+if spam_check = YandexCaptcha.spam?(user_input, ip: current_user.ip)
+  captcha = YandexCaptcha.get_captcha(spam_check[:id])
 
   # now you can show captcha[:url] to user
   # but remember to write captcha[:captcha] to session
 
   # to check is captcha enterred by user is valid:
-  captcha_valid = YandexCleanweb.valid_captcha?(result[:id], captcha[:captcha], user_captcha)
+  captcha_valid = YandexCaptcha.valid_captcha?(result[:id], captcha[:captcha], user_captcha)
 end
 ```
 
-If you use Yandex Cleanweb in Rails app, we recommend to set up the api key in `config/initializers/yandex_cleanweb.rb`
+If you use Yandex Captcha in Rails app, we recommend to set up the api key in `config/initializers/yandex_captcha.rb`
 
 ## Contributing
 

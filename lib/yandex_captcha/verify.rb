@@ -2,7 +2,7 @@ require "uri"
 require "nokogiri"
 require "net/http"
 
-module YandexCleanweb
+module YandexCaptcha
   module Verify
     class << self
 
@@ -66,7 +66,7 @@ module YandexCleanweb
 
       def api_get_captcha(request_id)
         get_captcha_url = "#{API_URL}/get-captcha"
-        params = { key: prepare_api_key, id: request_id, type: YandexCleanweb.configuration.captcha_type }
+        params = { key: prepare_api_key, id: request_id, type: YandexCaptcha.configuration.captcha_type }
 
         uri = URI.parse(get_captcha_url)
         uri.query = URI.encode_www_form(params)
@@ -91,9 +91,9 @@ module YandexCleanweb
       end
 
       def prepare_api_key
-        raise NoApiKeyException if YandexCleanweb.configuration.api_key.nil? || YandexCleanweb.configuration.api_key.empty?
+        raise NoApiKeyException if YandexCaptcha.configuration.api_key.nil? || YandexCaptcha.configuration.api_key.empty?
 
-        YandexCleanweb.configuration.api_key
+        YandexCaptcha.configuration.api_key
       end
     end
   end

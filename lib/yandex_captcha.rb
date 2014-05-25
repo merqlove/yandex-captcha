@@ -1,7 +1,7 @@
-require 'yandex_cleanweb/configuration'
-require 'yandex_cleanweb/verify'
+require 'yandex_captcha/configuration'
+require 'yandex_captcha/verify'
 
-module YandexCleanweb
+module YandexCaptcha
   class NoApiKeyException < Exception; end
   class BadResponseException < Exception; end
 
@@ -45,9 +45,9 @@ module YandexCleanweb
 end
 
 if defined?(Rails)
-  require 'yandex_cleanweb/rails'
+  require 'yandex_captcha/rails'
 end
 
 if defined?(Sinatra) and Sinatra.respond_to? :register
-  require 'yandex_cleanweb/sinatra'
+  require 'yandex_captcha/sinatra'
 end

@@ -1,8 +1,8 @@
 <div id="captcha_widget">
   <div id="captcha_image">
-    <img src="<%= asset_path("yandex_cleanweb/loading.gif") %>" />
+    <img src="<%= asset_path("yandex_captcha/loading.gif") %>" />
   </div>
   <input type="text" id="captcha_response_field" name="captcha_response_field" placeholder="Введите цифры" />
   <input type="hidden" name="captcha_response_id" value="" />
 </div>
-<%= javascript_include_tag "yandex_cleanweb/captcha" %>
+<%= javascript_include_tag "yandex_captcha/captcha" %>

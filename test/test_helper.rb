@@ -6,4 +6,4 @@ require "minitest/pride"
 require "minitest-spec-context"
 require "fakeweb"
 
-require "yandex_cleanweb"
+require "yandex_captcha"

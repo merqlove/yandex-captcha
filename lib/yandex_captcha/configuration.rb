@@ -1,13 +1,13 @@
-module YandexCleanweb
+module YandexCaptcha
   # This class enables detailed configuration of the Yandex CleanWeb services.
   #
   # By calling
   #
-  #   YandexCleanweb.configuration # => instance of YandexCleanweb::Configuration
+  #   YandexCaptcha.configuration # => instance of YandexCaptcha::Configuration
   #
   # or
-  #   YandexCleanweb.configure do |config|
-  #     config # => instance of YandexCleanweb::Configuration
+  #   YandexCaptcha.configure do |config|
+  #     config # => instance of YandexCaptcha::Configuration
   #   end
   #
   # you are able to perform configuration updates.
@@ -22,7 +22,7 @@ module YandexCleanweb
   #
   # Setting the keys with this Configuration
   #
-  #   YandexCleanweb.configure do |config|
+  #   YandexCaptcha.configure do |config|
   #     config.api_key  = 'cw.1.1.gsdjdgskjhsdgjkgsdjsdjgkskhsgjkgsjhdkgsdghskd.sdgjhgsdsgdkjgdshkgds'
   #     config.captcha_type  = 'elite'
   #   end

@@ -1,4 +1,4 @@
-module YandexCleanweb
+module YandexCaptcha
   class ApplicationController < ::ApplicationController
     layout false
     before_filter :setup

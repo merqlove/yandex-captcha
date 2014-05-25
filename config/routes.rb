@@ -1,3 +1,3 @@
-YandexCleanweb::Engine.routes.draw do
+YandexCaptcha::Engine.routes.draw do
   match 'captcha' => 'captcha#show'
 end
