@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.email         = ["sasha@merqlove.ru","shatrov@me.com"]
   gem.description   = %q{Ruby wrapper for Yandex.Cleanweb}
   gem.summary       = %q{Ruby wrapper for Yandex.Cleanweb spam detector}
-  gem.homepage      = "https://github.com/merqlove/yandex_captcha"
+  gem.homepage      = "https://github.com/merqlove/yandex-captcha"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
