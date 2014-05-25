@@ -1,7 +1,6 @@
 module YandexCaptcha
-  class ApplicationController < ::ApplicationController
+  class ApplicationController < ActionController::Base
     layout false
-    before_filter :setup
-    _process_action_callbacks.map(&:filter)
+    protect_from_forgery
   end
 end
