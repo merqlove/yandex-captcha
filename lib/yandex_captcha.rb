@@ -18,8 +18,6 @@ module YandexCaptcha
     yield(config)
   end
 
-  private
-
   # Gives access to the current Configuration.
   def self.configuration
     @configuration ||= Configuration.new
