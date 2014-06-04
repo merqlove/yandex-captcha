@@ -62,3 +62,5 @@ If you use Yandex Captcha in Rails app, we recommend to set up the api key in `c
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+Much thanks to Evrone for `Verify` base.
