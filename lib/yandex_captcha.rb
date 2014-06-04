@@ -1,5 +1,6 @@
 require 'yandex_captcha/configuration'
 require 'yandex_captcha/verify'
+require 'yandex_captcha/helpers/base'
 
 module YandexCaptcha
   class NoApiKeyException < Exception; end

@@ -1,7 +1,7 @@
 module YandexCaptcha
   module Helpers
     module Rails
-
+      include Base
       def captcha_tags(options = {})
 
         error = options[:error] ||= ((defined? flash) ? flash[:captcha_error] : "")

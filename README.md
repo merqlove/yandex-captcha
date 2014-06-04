@@ -68,6 +68,11 @@ end
 ### In Controllers
 
 ```ruby
+# Rails / Sinatra
+if valid_captcha?(params[:captcha_response_id], params[:captcha_response_field])
+  # some
+end
+
 if YandexCaptcha::Verify.valid_captcha?(params[:captcha_response_id], params[:captcha_response_field])
   # some
 end
