@@ -25,9 +25,22 @@ Or install it yourself as:
 
     $ gem install yandex_captcha
 
+This gem can be used as Rails Engine or Sinatra Extension.
+
+Tested:
+- Rails 3.2+ (Rails 4 also checked)
+- Sinatra 1.4+
+
 ## Usage
 
 Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru/cleanweb/getkey.xml)
+
+### Options
+
+- `ajax` = `true/false`
+- `noscript` = `true/false` Only for non ajax version.
+
+### Code
 
 ```ruby
 # Rails routes

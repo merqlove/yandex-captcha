@@ -6,10 +6,10 @@ module YandexCaptcha
 
         error = options[:error] ||= ((defined? flash) ? flash[:captcha_error] : "")
         if options[:ajax]
-          render "yandex_captcha/captcha_ajax"
+          render partial: "yandex_captcha/captcha_ajax"
         else
           captcha = YandexCaptcha::Verify.get_captcha
-          render "yandex_captcha/captcha", locals: { captcha: captcha, error: error, noscript: options[:noscript] } if captcha
+          render partial: "yandex_captcha/captcha", locals: { captcha: captcha, error: error, noscript: options[:noscript] } if captcha
         end
       end
 

@@ -1,3 +1,3 @@
 YandexCaptcha::Engine.routes.draw do
-  match 'captcha' => 'captcha#show'
+  get 'captcha' => 'captcha#show'
 end
