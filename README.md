@@ -54,6 +54,8 @@ if YandexCaptcha::Verify.valid_captcha?(params[:captcha_response_id], params[:ca
 end
 ```
 
+Other examples:
+
 ```ruby
 # Methods
 YandexCaptcha::Verify.spam?("just phrase")
