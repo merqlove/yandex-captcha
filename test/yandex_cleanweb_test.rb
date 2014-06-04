@@ -6,7 +6,7 @@ describe YandexCaptcha do
   context "without api key" do
     before do
       YandexCaptcha.configure do |config|
-        config.api_key  = nil
+        config.api_key = nil
       end
     end
 

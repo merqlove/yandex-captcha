@@ -36,7 +36,25 @@ register YandexCaptcha::Sinatra
 YandexCaptcha.configure do |config|
   config.api_key = "your_key"
 end
+```
 
+In Views:
+
+```erb
+<%= captcha_tags %>
+<%= captcha_tags ajax:true %>
+<%= captcha_tags noscript:true %>
+```
+
+In Controllers:
+
+```ruby
+  if YandexCaptcha::Verify.valid_captcha?(params[:captcha_response_id], params[:captcha_response_field])
+    # some
+  end
+```
+
+```ruby
 # Methods
 YandexCaptcha::Verify.spam?("just phrase")
   => false
