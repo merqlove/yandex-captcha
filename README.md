@@ -49,9 +49,9 @@ In Views:
 In Controllers:
 
 ```ruby
-  if YandexCaptcha::Verify.valid_captcha?(params[:captcha_response_id], params[:captcha_response_field])
-    # some
-  end
+if YandexCaptcha::Verify.valid_captcha?(params[:captcha_response_id], params[:captcha_response_field])
+  # some
+end
 ```
 
 ```ruby
