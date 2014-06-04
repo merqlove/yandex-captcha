@@ -27,7 +27,7 @@ Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru
 
 ```ruby
 # Rails routes
-mount YandexCaptcha::Engine, :at => '/yandex_captcha/'
+mount YandexCaptcha::Engine, at: '/yandex_captcha/'
 
 # Sinatra
 register YandexCaptcha::Sinatra
