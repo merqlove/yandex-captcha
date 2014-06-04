@@ -11,7 +11,7 @@ Unfortunatelly, this gem *is not capable with MRI 1.8.7* because of MRI 1.8.7 do
 
 Add this line to your application's Gemfile:
 
-    gem 'yandex_captcha', '~> 0.4.2'
+    gem 'yandex_captcha', '~> 0.4.3'
 
 Or:    
 
