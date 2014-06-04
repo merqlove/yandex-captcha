@@ -1,5 +1,7 @@
 # Yandex Captcha
 
+[![Code Climate](https://codeclimate.com/github/merqlove/yandex-captcha.png)](https://codeclimate.com/github/merqlove/yandex-captcha)
+
 Ruby wrapper for [Yandex Cleanweb](http://api.yandex.ru/cleanweb/) spam detector.
 
 Unfortunatelly, this gem *is not capable with MRI 1.8.7* because of MRI 1.8.7 doesn't have `URI.encode_www_form` method.
