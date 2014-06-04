@@ -29,7 +29,7 @@ Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru
 # Rails routes
 mount YandexCaptcha::Engine, :at => '/yandex_captcha/'
 
-#Sinatra
+# Sinatra
 register YandexCaptcha::Sinatra
 
 # Configuration
@@ -37,7 +37,7 @@ YandexCaptcha.configure do |config|
   config.api_key = "your_key"
 end
 
-#Methods
+# Methods
 YandexCaptcha::Verify.spam?("just phrase")
   => false
 
