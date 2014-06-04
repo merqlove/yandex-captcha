@@ -11,7 +11,11 @@ Unfortunatelly, this gem *is not capable with MRI 1.8.7* because of MRI 1.8.7 do
 
 Add this line to your application's Gemfile:
 
-    gem 'yandex_captcha', '~> 0.0.5'
+    gem 'yandex_captcha', '~> 0.4.0'
+
+Or:    
+
+    gem 'yandex_captcha', github: 'merqlove/yandex-captcha'
 
 And then execute:
 
@@ -94,4 +98,6 @@ If you use Yandex Captcha in Rails app, we recommend to set up the api key in `c
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-Much thanks to Evrone for `Verify` base.
+---
+
+Special respect to Evrone which gem `yandex-cleanweb` include most of code in `lib/yandex_captcha/verify.rb` and some examples on this page.
