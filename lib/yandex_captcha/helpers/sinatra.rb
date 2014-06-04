@@ -1,7 +1,6 @@
 module YandexCaptcha
   module Helpers
     module Sinatra
-      include Base
       def captcha_tags(options = {})
         template = settings.captcha_ajax_template.to_s.to_sym
         if options[:ajax]

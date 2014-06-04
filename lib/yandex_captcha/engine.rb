@@ -13,6 +13,7 @@ module YandexCaptcha
       begin
         ActionView::Base.send(:include, ::YandexCaptcha::Helpers::Rails)
         ActionController::Base.send(:include, ::YandexCaptcha::Verify)
+        ActionController::Base.send(:include, ::YandexCaptcha::Helpers::Base)
       end
     end
   end

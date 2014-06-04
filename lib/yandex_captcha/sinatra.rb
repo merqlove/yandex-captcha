@@ -14,6 +14,7 @@ module YandexCaptcha
       end
 
       app.helpers Helpers::Sinatra
+      app.helpers Helpers::Base
     end
   end
 end

@@ -64,6 +64,13 @@ end
   <%= captcha_tags ajax:true %>
   <input type="submit" value="Submit" />
 </form>
+
+or
+
+<%= form_tag some_response_path do %>
+  <%= captcha_tags ajax:true %>
+  <%= submit_tag 'Submit' %>
+<% end %>
 ```
 
 ### In Controllers
