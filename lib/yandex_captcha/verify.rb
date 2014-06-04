@@ -10,8 +10,9 @@ module YandexCaptcha
         response = api_check_spam(options)
         doc = Nokogiri::XML(response)
 
-        request_id_tag = doc.xpath('//check-spam-result/id')
-        spam_flag_tag = doc.xpath('//check-spam-result/text')
+        spam_result = doc.xpath('//check-spam-result')
+        request_id_tag = spam_result.xpath('id')
+        spam_flag_tag = spam_result.xpath('text')
 
         raise BadResponseException if request_id_tag.size.zero?
 
@@ -19,7 +20,7 @@ module YandexCaptcha
         spam_flag = spam_flag_tag[0].attributes["spam-flag"].content
 
         if spam_flag == 'yes'
-          links = doc.xpath('//check-spam-result/links')[0].children
+          links = spam_result.xpath('links')[0].children
 
           links.map do |el|
             [el.attributes["url"], el.attributes["spam_flag"] == 'yes']
@@ -76,11 +77,12 @@ module YandexCaptcha
 
       def api_check_spam(options)
         cleanweb_options = { key: prepare_api_key }
+        run_options = options[0]
 
-        if options[0].is_a?(String) # quick check
-          cleanweb_options[:body_plain] = options[0]
+        if run_options.is_a?(String) # quick check
+          cleanweb_options[:body_plain] = run_options
         else
-          options = options[0]
+          options = run_options
           cleanweb_options.merge!(Hash[options.map{ |k,v| [k.to_s.gsub("_","-"), v] }])
         end
 
