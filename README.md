@@ -60,9 +60,12 @@ end
 #### Code
 
 ```erb
-<%= captcha_tags %>
-<%= captcha_tags ajax:true %>
-<%= captcha_tags noscript:true %>
+<form action="/path" method="POST">
+  <%= captcha_tags %>
+  <%= captcha_tags ajax:true %>
+  <%= captcha_tags noscript:true %>
+  <input type="submit" value="Submit" />
+</form>
 ```
 
 ### In Controllers
