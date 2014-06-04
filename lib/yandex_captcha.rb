@@ -4,16 +4,12 @@ require 'yandex_captcha/verify'
 module YandexCaptcha
   class NoApiKeyException < Exception; end
   class BadResponseException < Exception; end
+  class YandexCaptchaError < StandardError; end
 
   API_URL = 'http://cleanweb-api.yandex.ru/1.0'
   CAPTCHA_TYPE = 'std'
   HANDLE_TIMEOUTS_GRACEFULLY      = true
   SKIP_VERIFY_ENV = ['test', 'cucumber']
-
-  # Gives access to the current Configuration.
-  def self.configuration
-    @configuration ||= Configuration.new
-  end
 
   # Allows easy setting of multiple configuration options. See Configuration
   # for all available options.
@@ -22,7 +18,11 @@ module YandexCaptcha
     yield(config)
   end
 
-  class YandexCleanwebError < StandardError
+  private
+
+  # Gives access to the current Configuration.
+  def self.configuration
+    @configuration ||= Configuration.new
   end
 end
 
