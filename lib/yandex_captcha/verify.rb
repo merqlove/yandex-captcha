@@ -16,20 +16,10 @@ module YandexCaptcha
 
         raise BadResponseException if request_id_tag.size.zero?
 
-        request_id = request_id_tag.first.content
-        spam_flag = spam_flag_tag.first.attributes["spam-flag"].content
+        request_id = request_id_tag.first
+        spam_flag = spam_flag_tag.first.attributes["spam-flag"]
 
-        if spam_flag == 'yes'
-          links = spam_result.xpath('links').first.children
-
-          links.map do |el|
-            [el.attributes["url"], el.attributes["spam_flag"] == 'yes']
-          end
-
-          { id: request_id, links: links }
-        else
-          false
-        end
+        spam_check request_id.content, spam_result, spam_flag.content
       end
 
       def get_captcha(request_id=nil)
@@ -90,6 +80,23 @@ module YandexCaptcha
         uri = URI.parse(check_spam_url)
         response = Net::HTTP.post_form(uri, cleanweb_options)
         response.body
+      end
+
+      def spam_check(request_id, spam_result, spam_flag)
+        return false unless request_id or spam_result or spam_flag
+
+        if spam_flag == 'yes'
+          links = spam_result.xpath('links')
+          links_childrens = links.first.children
+
+          links_childrens.map do |el|
+            [el.attributes["url"], el.attributes["spam_flag"] == 'yes']
+          end
+
+          { id: request_id, links: links_childrens }
+        else
+          false
+        end
       end
 
       def prepare_api_key
