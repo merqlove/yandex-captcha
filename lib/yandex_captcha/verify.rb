@@ -16,11 +16,11 @@ module YandexCaptcha
 
         raise BadResponseException if request_id_tag.size.zero?
 
-        request_id = request_id_tag[0].content
-        spam_flag = spam_flag_tag[0].attributes["spam-flag"].content
+        request_id = request_id_tag.first.content
+        spam_flag = spam_flag_tag.first.attributes["spam-flag"].content
 
         if spam_flag == 'yes'
-          links = spam_result.xpath('links')[0].children
+          links = spam_result.xpath('links').first.children
 
           links.map do |el|
             [el.attributes["url"], el.attributes["spam_flag"] == 'yes']
