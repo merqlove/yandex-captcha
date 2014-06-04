@@ -27,14 +27,18 @@ Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru
 
 ```ruby
 mount YandexCaptcha::Engine, :at => '/yandex_captcha/'
-YandexCaptcha.api_key = "your_key"
-YandexCaptcha.spam?("just phrase")
+
+YandexCaptcha.configure do |config|
+  config.api_key = "your_key"
+end
+
+YandexCaptcha::Verify.spam?("just phrase")
   => false
 
-YandexCaptcha.spam?(body_plain: "my text", ip: "80.80.40.3")
+YandexCaptcha::Verify.spam?(body_plain: "my text", ip: "80.80.40.3")
   => false
 
-YandexCaptcha.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
+YandexCaptcha::Verify.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
   => { id: "request id", links: [ ['http://spam.com', true] ] }
 ```
 
@@ -43,14 +47,14 @@ More complex example:
 ```ruby
 
 user_input = "download free porn <a>...</a>"
-if spam_check = YandexCaptcha.spam?(user_input, ip: current_user.ip)
-  captcha = YandexCaptcha.get_captcha(spam_check[:id])
+if spam_check = YandexCaptcha::Verify.spam?(user_input, ip: current_user.ip)
+  captcha = YandexCaptcha::Verify.get_captcha(spam_check[:id])
 
   # now you can show captcha[:url] to user
   # but remember to write captcha[:captcha] to session
 
   # to check is captcha enterred by user is valid:
-  captcha_valid = YandexCaptcha.valid_captcha?(result[:id], captcha[:captcha], user_captcha)
+  captcha_valid = YandexCaptcha::Verify.valid_captcha?(result[:id], captcha[:captcha], user_captcha)
 end
 ```
 
