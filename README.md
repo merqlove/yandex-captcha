@@ -11,7 +11,7 @@ Unfortunatelly, this gem *is not capable with MRI 1.8.7* because of MRI 1.8.7 do
 
 Add this line to your application's Gemfile:
 
-    gem 'yandex_captcha', '~> 0.4.3'
+    gem 'yandex_captcha', '~> 0.4.3.1'
 
 Or:    
 
@@ -35,11 +35,6 @@ Tested:
 
 Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru/cleanweb/getkey.xml)
 
-### Options
-
-- `ajax` = `true/false`
-- `noscript` = `true/false` Only for non ajax version.
-
 ### Code
 
 ```ruby
@@ -55,7 +50,14 @@ YandexCaptcha.configure do |config|
 end
 ```
 
-In Views:
+### In Views
+
+#### View Helper Options
+
+- `ajax` = `true/false`
+- `noscript` = `true/false` Only for non ajax version.
+
+#### Code
 
 ```erb
 <%= captcha_tags %>
@@ -63,7 +65,7 @@ In Views:
 <%= captcha_tags noscript:true %>
 ```
 
-In Controllers:
+### In Controllers
 
 ```ruby
 if YandexCaptcha::Verify.valid_captcha?(params[:captcha_response_id], params[:captcha_response_field])
@@ -71,7 +73,7 @@ if YandexCaptcha::Verify.valid_captcha?(params[:captcha_response_id], params[:ca
 end
 ```
 
-Other examples:
+### Other examples
 
 ```ruby
 # Methods
@@ -85,7 +87,7 @@ YandexCaptcha::Verify.spam?(body_html: "some spam <a href='http://spam.com'>spam
   => { id: "request id", links: [ ['http://spam.com', true] ] }
 ```
 
-More complex example:
+### More complex example
 
 ```ruby
 
