@@ -1,7 +1,6 @@
 module YandexCaptcha
   class Engine < Rails::Engine
     isolate_namespace YandexCaptcha
-    engine_name 'yandex_captcha'
 
     if Rails.version >= '3.1'
       initializer :assets do |app|
@@ -12,8 +11,6 @@ module YandexCaptcha
     initializer "setup config" do
       begin
         ActionView::Base.send(:include, ::YandexCaptcha::Helpers::Rails)
-        ActionController::Base.send(:include, ::YandexCaptcha::Verify)
-        # ActionController::Base.send(:include, ::YandexCaptcha::Helpers::Base)
       end
     end
   end

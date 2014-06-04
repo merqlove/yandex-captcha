@@ -1,8 +1,8 @@
 module YandexCaptcha
   module Helpers
     module Base
-      def valid_captcha?(*args)
-        YandexCaptcha::Verify.valid_captcha? *args
+      def self.included(base)
+        base.send(:include, ::YandexCaptcha::Verify::Helpers)
       end
     end
   end

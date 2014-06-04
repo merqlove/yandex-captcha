@@ -38,6 +38,9 @@ Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru
 ### Code
 
 ```ruby
+# ApplicationController in Rails or simple Ruby 
+include YandexCaptcha::Helpers::Base
+ 
 # Rails routes
 mount YandexCaptcha::Engine, at: '/yandex_captcha/'
 
@@ -76,11 +79,12 @@ or
 ### In Controllers
 
 ```ruby
-# Rails / Sinatra
+# Rails / Sinatra / or if you included helpers
 if valid_captcha?(params[:captcha_response_id], params[:captcha_response_field])
   # some
 end
 
+# Long way
 if YandexCaptcha::Verify.valid_captcha?(params[:captcha_response_id], params[:captcha_response_field])
   # some
 end
