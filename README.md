@@ -1,6 +1,7 @@
 # Yandex Captcha
 
 [![Code Climate](https://codeclimate.com/github/merqlove/yandex-captcha.png)](https://codeclimate.com/github/merqlove/yandex-captcha)
+[![Build Status](https://travis-ci.org/merqlove/yandex-captcha.svg)](https://travis-ci.org/merqlove/yandex-captcha)
 
 Ruby wrapper for [Yandex Cleanweb](http://api.yandex.ru/cleanweb/) spam detector.
 
