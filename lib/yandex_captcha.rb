@@ -3,6 +3,7 @@ require 'yandex_captcha/verify'
 require 'yandex_captcha/helpers/base'
 
 module YandexCaptcha
+  module Helpers ; end
   class NoApiKeyException < Exception; end
   class BadResponseException < Exception; end
   class YandexCaptchaError < StandardError; end

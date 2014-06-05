@@ -4,13 +4,8 @@ require "net/http"
 
 module YandexCaptcha
   module Verify
+    class << self
 
-    def self.included(base)
-      base.extend(ClassMethods)
-      base.extend(Helpers)
-    end
-
-    module Helpers
       def spam?(*options)
         response = api_check_spam(options)
         doc = Nokogiri::XML(response)
@@ -42,9 +37,6 @@ module YandexCaptcha
         doc = Nokogiri::XML(response)
         doc.xpath('//check-captcha-result/ok').any?
       end
-    end
-
-    module ClassMethods
 
       private
 
