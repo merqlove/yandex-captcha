@@ -85,50 +85,53 @@ describe YandexCaptcha do
       end
     end
 
-    # describe "#spam?" do
-    #
-    #   describe "simple check" do
-    #     it "works" do
-    #       YandexCaptcha::Verify.spam?("фраза").must_equal false
-    #       YandexCaptcha::Verify.spam?("недорого увеличение пениса проститутки").must_equal false
-    #     end
-    #   end
-    #
-    #   describe "advanced mode" do
-    #     it "works" do
-    #       YandexCaptcha::Verify.spam?(body_plain: "my text", ip: "80.80.40.3").must_equal false
-    #     end
-    #
-    #     it "with some html" do
-    #       result = YandexCaptcha::Verify.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
-    #
-    #       result[:id].wont_be_empty
-    #       result[:links].must_be_empty
-    #     end
-    #   end
-    # end
+    describe "#spam?" do
+
+      describe "simple check" do
+        it "works" do
+          YandexCaptcha::Verify.spam?("фраза").must_equal false
+          YandexCaptcha::Verify.spam?("недорого увеличение пениса проститутки").must_equal false
+        end
+      end
+
+      describe "advanced mode" do
+        it "works" do
+          YandexCaptcha::Verify.spam?(body_plain: "my text", ip: "80.80.40.3").must_equal false
+        end
+
+        it "with some html" do
+          result = YandexCaptcha::Verify.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
+
+          result[:id].wont_be_empty
+          result[:links].must_be_empty
+        end
+      end
+    end
 
     describe "#get_captcha + #valid_captcha?" do
 
       it "works for not valid captchas" do
-        captcha = YandexCaptcha::Verify.get_captcha
+        result = YandexCaptcha::Verify.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
+        captcha = YandexCaptcha::Verify.get_captcha(result[:id])
 
         captcha[:url].wont_be_empty
         captcha[:captcha].wont_be_empty
 
-        valid = YandexCaptcha::Verify.valid_captcha?(captcha[:captcha], "1234")
+        valid = YandexCaptcha::Verify.valid_captcha?(captcha[:captcha], "1234", result[:id])
         valid.must_equal false
       end
     end
 
     describe "raises BadResponseException in case of empty result" do
       before do
-        FakeWeb.clean_registry
+        WebMock.disable_net_connect!
       end
 
       it "check for spam" do
-        FakeWeb.register_uri(:post, "http://cleanweb-api.yandex.ru/1.0/check-spam", body: "")
+        stub_request(:post, "http://cleanweb-api.yandex.ru/1.0/check-spam")
         proc { YandexCaptcha::Verify.spam?(body_plain: "any text") }.must_raise(YandexCaptcha::BadResponseException)
+        WebMock.reset!
+        WebMock.allow_net_connect!
       end
     end
   end
