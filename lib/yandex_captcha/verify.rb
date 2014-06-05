@@ -11,6 +11,7 @@ module YandexCaptcha
         doc = Nokogiri::XML(response)
 
         spam_result = doc.xpath('//check-spam-result')
+
         raise BadResponseException unless spam_result
 
         request_id_tag = spam_result.xpath('id')
