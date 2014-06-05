@@ -56,7 +56,7 @@ describe YandexCaptcha do
     describe "#valid_captcha?" do
       it "raise an error" do
         -> {
-          YandexCaptcha::Verify.valid_captcha?("anything", "anything", 123)
+          YandexCaptcha::Verify.valid_captcha?("anything", 123, "anything")
         }.must_raise YandexCaptcha::NoApiKeyException
       end
     end
@@ -85,39 +85,38 @@ describe YandexCaptcha do
       end
     end
 
-    describe "#spam?" do
-
-      describe "simple check" do
-        it "works" do
-          YandexCaptcha::Verify.spam?("фраза").must_equal false
-          YandexCaptcha::Verify.spam?("недорого увеличение пениса проститутки").must_equal false
-        end
-      end
-
-      describe "advanced mode" do
-        it "works" do
-          YandexCaptcha::Verify.spam?(body_plain: "my text", ip: "80.80.40.3").must_equal false
-        end
-
-        it "with some html" do
-          result = YandexCaptcha::Verify.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
-
-          result[:id].wont_be_empty
-          result[:links].must_be_empty
-        end
-      end
-    end
+    # describe "#spam?" do
+    #
+    #   describe "simple check" do
+    #     it "works" do
+    #       YandexCaptcha::Verify.spam?("фраза").must_equal false
+    #       YandexCaptcha::Verify.spam?("недорого увеличение пениса проститутки").must_equal false
+    #     end
+    #   end
+    #
+    #   describe "advanced mode" do
+    #     it "works" do
+    #       YandexCaptcha::Verify.spam?(body_plain: "my text", ip: "80.80.40.3").must_equal false
+    #     end
+    #
+    #     it "with some html" do
+    #       result = YandexCaptcha::Verify.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
+    #
+    #       result[:id].wont_be_empty
+    #       result[:links].must_be_empty
+    #     end
+    #   end
+    # end
 
     describe "#get_captcha + #valid_captcha?" do
 
       it "works for not valid captchas" do
-        result = YandexCaptcha::Verify.spam?(body_html: "some spam <a href='http://spam.com'>spam link</a>")
-        captcha = YandexCaptcha::Verify.get_captcha(result[:id])
+        captcha = YandexCaptcha::Verify.get_captcha
 
         captcha[:url].wont_be_empty
         captcha[:captcha].wont_be_empty
 
-        valid = YandexCaptcha::Verify.valid_captcha?(result[:id], captcha[:captcha], "1234")
+        valid = YandexCaptcha::Verify.valid_captcha?(captcha[:captcha], "1234")
         valid.must_equal false
       end
     end

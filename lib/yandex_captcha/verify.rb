@@ -11,15 +11,17 @@ module YandexCaptcha
         doc = Nokogiri::XML(response)
 
         spam_result = doc.xpath('//check-spam-result')
+        raise BadResponseException unless spam_result
+
         request_id_tag = spam_result.xpath('id')
         spam_flag_tag = spam_result.xpath('text')
 
         raise BadResponseException if request_id_tag.size.zero?
 
-        request_id = request_id_tag.first
-        spam_flag = spam_flag_tag.first.attributes["spam-flag"]
+        request_id = request_id_tag.first.content
+        spam_flag = spam_flag_tag.first.attributes["spam-flag"].content
 
-        spam_flag_check request_id.content, spam_result, spam_flag.content
+        spam_flag_check request_id, spam_result, spam_flag
       end
 
       def get_captcha(request_id=nil)
@@ -85,7 +87,7 @@ module YandexCaptcha
       end
 
       def spam_flag_check(request_id, spam_result, spam_flag)
-        return false unless request_id or spam_result or spam_flag
+        return {id: request_id, links: []} unless spam_flag
 
         if spam_flag == 'yes'
           links = spam_result.xpath('links')
