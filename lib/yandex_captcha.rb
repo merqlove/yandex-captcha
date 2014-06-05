@@ -3,7 +3,6 @@ require 'yandex_captcha/verify'
 require 'yandex_captcha/helpers/base'
 
 module YandexCaptcha
-  module Helpers ; end
   class NoApiKeyException < Exception; end
   class BadResponseException < Exception; end
   class YandexCaptchaError < StandardError; end
@@ -23,6 +22,14 @@ module YandexCaptcha
   # Gives access to the current Configuration.
   def self.configuration
     @configuration ||= Configuration.new
+  end
+
+  def self.skip_env
+    if configuration.skip_verify_env.include? configuration.current_env
+      true
+    else
+      false
+    end
   end
 end
 

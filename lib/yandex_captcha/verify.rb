@@ -19,7 +19,7 @@ module YandexCaptcha
         request_id = request_id_tag.first
         spam_flag = spam_flag_tag.first.attributes["spam-flag"]
 
-        spam_check request_id.content, spam_result, spam_flag.content
+        spam_flag_check request_id.content, spam_result, spam_flag.content
       end
 
       def get_captcha(request_id=nil)
@@ -33,6 +33,8 @@ module YandexCaptcha
       end
 
       def valid_captcha?(captcha_id=nil, value=nil, request_id=nil)
+        true if YandexCaptcha.skip_env
+
         response = api_check_captcha(request_id, captcha_id, value)
         doc = Nokogiri::XML(response)
         doc.xpath('//check-captcha-result/ok').any?
@@ -62,7 +64,7 @@ module YandexCaptcha
         uri = URI.parse(get_captcha_url)
         uri.query = URI.encode_www_form(params)
 
-        Net::HTTP.get(uri)
+        request_uri(uri)
       end
 
       def api_check_spam(options)
@@ -78,11 +80,11 @@ module YandexCaptcha
 
         check_spam_url = "#{API_URL}/check-spam"
         uri = URI.parse(check_spam_url)
-        response = Net::HTTP.post_form(uri, cleanweb_options)
+        response = request_uri(uri, cleanweb_options, :post)
         response.body
       end
 
-      def spam_check(request_id, spam_result, spam_flag)
+      def spam_flag_check(request_id, spam_result, spam_flag)
         return false unless request_id or spam_result or spam_flag
 
         if spam_flag == 'yes'
@@ -96,6 +98,31 @@ module YandexCaptcha
           { id: request_id, links: links_childrens }
         else
           false
+        end
+      end
+
+      def request_uri(uri, options={}, type=:get)
+        begin
+          case type
+            when :post
+              Net::HTTP.post_form(uri, options)
+            else
+              Net::HTTP.get(uri)
+          end
+        rescue Timeout::Error
+          if YandexCaptcha.configuration.handle_timeouts_gracefully
+            if defined?(flash)
+              flash[:captcha_error] = if defined?(I18n)
+                I18n.translate('yandex_captcha.errors.cleanweb_unreachable', {:default => 'Yandex.CleanWeb unreachable.'})
+              else
+                'Yandex.CleanWeb unreachable.'
+              end
+            end
+          else
+            raise YandexCaptchaError, "Yandex.CleanWeb unreachable."
+          end
+        rescue Exception => e
+          raise YandexCaptchaError, e.message, e.backtrace
         end
       end
 

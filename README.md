@@ -36,6 +36,15 @@ Tested:
 
 Get the api key: [http://api.yandex.ru/cleanweb/getkey.xml](http://api.yandex.ru/cleanweb/getkey.xml)
 
+### Configuration options
+
+api_key  | Yandex.CleanWeb API key. (default `nil`)
+captcha_type (optional)  | Type of captcha (std,estd,lite,elite,rus,latl,elatl,latu,elatu,latm, elatm). (default `std`)
+api_server_url (optional) | Yandex.CleanWeb API server URL. (default `http://cleanweb-api.yandex.ru/1.0`)
+skip_verify_env (optional) | Custom error provider for non ajax mode. (default `['test', 'cucumber']`)
+handle_timeouts_gracefull (optional) | Graceful error's on timeouts. (default `true`)
+current_env (optional) | Current environment (default `ENV['RACK_ENV'] || ENV['RAILS_ENV']`)
+
 ### Code
 
 ```ruby
@@ -53,10 +62,11 @@ end
 
 ### In Views
 
-#### View Helper Options
+#### `captcha_tag` options
 
-- `ajax` = `true/false`
-- `noscript` = `true/false` Only for non ajax version.
+:ajax (optional)  | Ajaxify your captcha, don't wait for it on any page. (default `false`)
+:noscript (optional)  | Adding <noscript></noscript> wrap around captcha. Works only for non ajax mode. (default `false`)
+:error (optional) | Custom error provider for non ajax mode. (default `flash` or `nil`)
 
 #### Code
 
@@ -75,6 +85,18 @@ or
 ```
 
 ### In Controllers
+
+#### `valid_captcha?` options
+
+:captcha_id  | Yandex.CleanWeb captcha id. (default `nil`)
+:value  | User response value. (default `nil`)
+:request_id (optional) | Some unique request id (default `nil`)
+
+#### `get_captcha` options
+
+:request_id (optional) | Some unique request id (default `nil`)
+
+#### Example
 
 ```ruby
 # Rails / Sinatra / or if you included helpers

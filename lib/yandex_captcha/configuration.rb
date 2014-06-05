@@ -25,6 +25,10 @@ module YandexCaptcha
   #   YandexCaptcha.configure do |config|
   #     config.api_key  = 'cw.1.1.gsdjdgskjhsdgjkgsdjsdjgkskhsgjkgsjhdkgsdghskd.sdgjhgsdsgdkjgdshkgds'
   #     config.captcha_type  = 'elite'
+  #     config.api_server_url = 'http://cleanweb-api.yandex.ru/1.0'
+  #     config.skip_verify_env = ["test", "cucumber"]
+  #     config.handle_timeouts_gracefull = true'
+  #     config.current_env = "test"
   #   end
   #
   class Configuration
@@ -32,14 +36,16 @@ module YandexCaptcha
                   :api_key,
                   :skip_verify_env,
                   :handle_timeouts_gracefully,
-                  :captcha_type
+                  :captcha_type,
+                  :current_env
 
     def initialize #:nodoc:
-      @api_server_url      = API_URL
-      @captcha_type = CAPTCHA_TYPE
-      @api_key           = ENV['CAPTCHA_KEY']
+      @api_server_url             = API_URL
+      @captcha_type               = CAPTCHA_TYPE
+      @api_key                    = ENV['CAPTCHA_KEY']
       @skip_verify_env            = SKIP_VERIFY_ENV
       @handle_timeouts_gracefully = HANDLE_TIMEOUTS_GRACEFULLY
+      @current_env                = ENV['RACK_ENV'] || ENV['RAILS_ENV']
     end
 
   end

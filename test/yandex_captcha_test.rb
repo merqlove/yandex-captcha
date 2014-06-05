@@ -2,6 +2,33 @@
 require "test_helper"
 
 describe YandexCaptcha do
+  context "with test environment" do
+    before do
+      YandexCaptcha.configure do |config|
+        config.current_env = "test"
+      end
+    end
+
+    describe "#skip_env" do
+      it "skipping" do
+        YandexCaptcha.skip_env.must_equal true
+      end
+    end
+  end
+
+  context "with dev environment" do
+    before do
+      YandexCaptcha.configure do |config|
+        config.current_env = "development"
+      end
+    end
+
+    describe "#skip_env" do
+      it "working" do
+        YandexCaptcha.skip_env.must_equal false
+      end
+    end
+  end
 
   context "without api key" do
     before do
