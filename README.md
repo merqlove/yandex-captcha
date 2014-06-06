@@ -5,7 +5,7 @@
 [![Inline docs](http://inch-ci.org/github/merqlove/yandex-captcha.svg)](http://inch-ci.org/github/merqlove/yandex-captcha)
 [![Dependency Status](https://gemnasium.com/merqlove/yandex-captcha.svg)](https://gemnasium.com/merqlove/yandex-captcha)
 
-Ruby wrapper for [Yandex Cleanweb](http://api.yandex.ru/cleanweb/) spam detector.
+Ruby wrapper for [Yandex Cleanweb](http://api.yandex.ru/cleanweb/) with Rails and Sinatra support,  spam detector.
 
 Unfortunatelly, this gem *is not capable with MRI 1.8.7* because of MRI 1.8.7 doesn't have `URI.encode_www_form` method.
 
@@ -30,7 +30,8 @@ Or install it yourself as:
 This gem can be used as Rails Engine or Sinatra Extension.
 
 Tested:
-- Rails 3.2+ (Rails 4 also checked)
+- Rails 3.2+
+- Rails 4.1
 - Sinatra 1.4+
 
 ## Usage
