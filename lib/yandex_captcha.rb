@@ -25,11 +25,7 @@ module YandexCaptcha
   end
 
   def self.skip_env
-    if configuration.skip_verify_env.include? configuration.current_env
-      true
-    else
-      false
-    end
+    configuration.skip_verify_env.include? configuration.current_env
   end
 end
 
