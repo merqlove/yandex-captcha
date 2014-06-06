@@ -1,6 +1,7 @@
 module YandexCaptcha
   class Engine < Rails::Engine
     isolate_namespace YandexCaptcha
+    engine_name 'yandex_captcha'
 
     if Rails.version >= '3.1'
       initializer :assets do |app|
