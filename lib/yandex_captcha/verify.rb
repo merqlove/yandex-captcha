@@ -36,7 +36,7 @@ module YandexCaptcha
       end
 
       def valid_captcha?(captcha_id=nil, value=nil, request_id=nil)
-        true if YandexCaptcha.skip_env
+        return true if YandexCaptcha.skip_env
 
         response = api_check_captcha(request_id, captcha_id, value)
         doc = Nokogiri::XML(response)

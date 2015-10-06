@@ -34,6 +34,7 @@ describe YandexCaptcha do
     before do
       YandexCaptcha.configure do |config|
         config.api_key = nil
+        config.current_env = "development"
       end
     end
 
@@ -82,21 +83,22 @@ describe YandexCaptcha do
     before do
       YandexCaptcha.configure do |config|
         config.api_key = "cw.1.1.20121227T080449Z.51de1ee126e5ced6.f4f417fb55727520d7e39b00cf5393d4b1ca5e78"
+        config.current_env = "development"
       end
     end
 
     describe "#spam?" do
 
       describe "simple check" do
-        it "works" do
+        it "works simple" do
           YandexCaptcha::Verify.spam?("фраза").must_equal false
           YandexCaptcha::Verify.spam?("недорого увеличение пениса проститутки").must_equal false
         end
       end
 
       describe "advanced mode" do
-        it "works" do
-          YandexCaptcha::Verify.spam?(body_plain: "my text", ip: "80.80.40.3").must_equal false
+        it "works advanced" do
+          YandexCaptcha::Verify.spam?(body_plain: "my text", ip: "127.0.0.1").must_equal false
         end
 
         it "with some html" do
