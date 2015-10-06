@@ -5,6 +5,7 @@ require "minitest/spec"
 require "minitest/pride"
 require "minitest-spec-context"
 require 'webmock/minitest'
+require 'ipaddr'
 
 require "yandex_captcha"
 

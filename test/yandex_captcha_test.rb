@@ -98,7 +98,8 @@ describe YandexCaptcha do
 
       describe "advanced mode" do
         it "works advanced" do
-          YandexCaptcha::Verify.spam?(body_plain: "my text", ip: "127.0.0.1").must_equal false
+          ipv4 = IPAddr.new(rand(2**32),Socket::AF_INET)
+          YandexCaptcha::Verify.spam?(body_plain: "my text", ip: ipv4).must_equal false
         end
 
         it "with some html" do
